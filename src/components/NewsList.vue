@@ -1,5 +1,5 @@
 <template>
-    <div class="newslist-container">
+  <div class="newslist-container">
     <table class="table table-hover">
       <thead>
         <tr>
@@ -8,19 +8,25 @@
           <th>Текст новости</th>
           <th>Активность</th>
           <th>Дата публикации</th>
-          <th>Путь к картинке </th>
-          <th>Путь к превью </th>
+          <th>Путь к картинке</th>
+          <th>Путь к превью</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in newsList" :key="item.id">
           <td>
-            <router-link :to="'/edit/' + item.id"> # {{ item.id }} </router-link>
+            <router-link :to="'/news/edit/' + item.id"># {{ item.id }}</router-link>
           </td>
           <td>{{ item.newsName }}</td>
           <td>{{ item.newsText }}</td>
-          <td>{{ item.active }}</td>
-          <td>{{ item.datePublish }}</td>
+          <td>
+            <!--{{ item.active }}-->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" :checked="item.active">
+              <label class="custom-control-label " ></label>
+            </div>
+          </td>
+          <td>{{  item.datePublish | formatDate }}</td>
           <td>{{ item.pathToFullImage }}</td>
           <td>{{ item.pathToPreviewImage }}</td>
         </tr>
@@ -48,8 +54,9 @@ pathToFullImage: "/images/news/cbcca6c3-221b-4a87-a6be-bd3fa59c0160.jpg",
 pathToPreviewImage: "/images/news/bfc01153-b2c5-492b-9bf9-bf34e9a4d752.jpg"
 },
 */
+import moment from "moment";
 export default {
-name: "news-list",
+  name: "news-list",
   // components: { MyPaginator, MySelect },
   props: {
     newsList: {
@@ -60,10 +67,14 @@ name: "news-list",
       type: Number,
       required: true
     }
+  },
+  methods: {
+    dateFormat(date) {
+      return moment(date).format("DD.MM.YYYY");
+    }
   }
-}
+};
 </script>
 
 <style>
-
 </style>

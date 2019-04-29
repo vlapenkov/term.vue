@@ -25,6 +25,18 @@ export default new Router({
       name: "news",      
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/News.vue")
+    },
+    {
+      path: "/news/edit/:id",
+      name: "Edit news",      
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/EditNews.vue")
+    },
+    {
+      path: "/news/add",
+      name: "Add user",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/AddNews.vue")
     }
   ]
 });

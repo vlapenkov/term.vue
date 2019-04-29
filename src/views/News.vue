@@ -1,7 +1,7 @@
 <template>
 <section>
   <p>This is news component</p>
-  <news-list v-model="newsList"></news-list>
+  <news-list :newsList="newsList" :total="total"></news-list>
 </section>
 </template>
 
@@ -20,7 +20,7 @@ pathToPreviewImage: "/images/news/bfc01153-b2c5-492b-9bf9-bf34e9a4d752.jpg"
 },
 */
 
-import axios from "axios";
+import * as axios from 'axios';
 import NewsList from "@/components/NewsList";
 
 export default {
@@ -44,14 +44,11 @@ export default {
       this.news = axios
         .get("https://localhost:44302/api/newsapi")
         .then(response => {
-          this.producers = response.data.result;
+          this.newsList = response.data.result;
           this.total = response.data.total;
           this.isLoading = false;
-        })
-        .error(e => {
-          console.error(e);
-          this.isLoading = false;
         });
+        
     }
   }
 };
