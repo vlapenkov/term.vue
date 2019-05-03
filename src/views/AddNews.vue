@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Добавление новости</h2>
+    <h2 class="main-caption">Добавление новости</h2>
 
     <div v-if="!news" class="alert alert-warning">
       Загрузка...
@@ -9,7 +9,7 @@
     <!--<user-form v-else :user="user" @input="value => (user = value)" /> -->
     <news-form v-else v-model="news" />
     <hr />
-    <button type="button" class="btn btn-primary" @click="save">Save</button>
+    <button type="button" class="btn btn-primary" @click="save">Сохранить</button>
     <pre>{{ news }}</pre>
   </div>
 </template>
@@ -23,8 +23,8 @@ const emptyObj = {
   id: 0,
   newsName: "",
   newsText: "",
-  active: "",
-  datePublish: null,
+  active: false,
+  datePublish: new Date(),
   pathToFullImage: "",
   pathToPreviewImage: ""
 };
@@ -39,7 +39,7 @@ export default {
   },
   data: function() {
     return {
-      // Пользователь
+      // Новость
       news: null
     };
   },
@@ -51,10 +51,10 @@ export default {
       this.news = Object.assign({}, emptyObj);
     },
     save: function() {
-      axios.post("http://localhost:3004/users/", this.user).then(response => {
+      axios.post(`${process.env.VUE_APP_TERMINAL_PREFIX}/api/newsapi/`,  this.news).then(response => {
         console.log(response);
-        this.$router.push("/users");
-      });
+        this.$router.push("/news");
+      }).catch(console.error);
     }
   }
 };

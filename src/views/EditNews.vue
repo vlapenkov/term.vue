@@ -9,7 +9,7 @@
     <!--<user-form v-else :user="user" @input="value => (user = value)" /> -->
     <news-form v-else v-model="news" />
     <hr />
-    <button type="button" class="btn btn-primary" @click="save">Save</button>
+    <button type="button" class="btn btn-primary" @click="save">Сохранить</button>
     <pre>{{ news }}</pre>
   </div>
 </template>
@@ -35,20 +35,15 @@ export default {
       return this.$route.params.id;
     },
     url() {
-      return "https://localhost:44302/api/newsapi/" + this.id;
-      
+      return `${process.env.VUE_APP_TERMINAL_PREFIX}/api/newsapi/${this.id}` ;      
     }
   },
   mounted: function() {
     this.loadData();
   },
-  created()
-  {
-      console.log('created');
-  },
 
   methods: {
-    save: function() {
+    save() {
       axios
         .put(this.url, this.news)
         .then(response => {
@@ -59,7 +54,8 @@ export default {
     },
     loadData: function() {
       axios.get(this.url).then(({ data }) => {
-          console.log(data);
+         // console.log(data);
+         // debugger;
         this.news = data;
       });
     }

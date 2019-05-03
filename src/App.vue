@@ -1,17 +1,8 @@
-<!--<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
-</template> -->
 
 <template>
   <div>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Vue course app</a>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top top-menu">
+      <a class="navbar-brand logotip-terminal" href="#"></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -24,6 +15,7 @@
         <span class="navbar-toggler-icon"/>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
+       <!-- <a class="navbar-brand logotip-terminal" href="/"></a>-->
         <ul class="navbar-nav mr-auto">
           <router-link tag="li" to="/" exact active-class="active">
             <a class="nav-link" href="#">Главная</a>
@@ -31,6 +23,7 @@
           <router-link tag="li" to="/news" exact active-class="active">
             <a class="nav-link" href="#">Новости</a>
           </router-link>
+          
         </ul>
       </div>
     </nav>
@@ -63,5 +56,21 @@
 }
 .main-container {
   margin-top: 70px;
+}
+.top-menu
+{
+  background-color: rgb(24, 53, 93);
+}
+.logotip-terminal
+{
+  padding: 5px;
+    width: 170px;
+    min-height: 70px;
+    background: url('https://terminal.yst.ru/img/YST.png') no-repeat center center;
+    z-index: 100;
+}
+.navbar.top-menu
+{
+padding: 0 1rem;
 }
 </style>

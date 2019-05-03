@@ -4,21 +4,19 @@
       <thead>
         <tr>
           <th>id</th>
-          <th>Имя новости</th>
-          <th>Текст новости</th>
+          <th>Имя новости</th>         
           <th>Активность</th>
           <th>Дата публикации</th>
-          <th>Путь к картинке</th>
+          <th>Картинка</th>
           <th>Путь к превью</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in newsList" :key="item.id">
           <td>
-            <router-link :to="'/news/edit/' + item.id"># {{ item.id }}</router-link>
+            <router-link :to="'/news/edit/' + item.id">{{ item.id }}</router-link>
           </td>
-          <td>{{ item.newsName }}</td>
-          <td>{{ item.newsText }}</td>
+          <td>{{ item.newsName }}</td>          
           <td>
             <!--{{ item.active }}-->
             <div class="custom-control custom-checkbox">
@@ -27,7 +25,7 @@
             </div>
           </td>
           <td>{{  item.datePublish | formatDate }}</td>
-          <td>{{ item.pathToFullImage }}</td>
+          <td><img :src="item.pathToFullImage" class="max-h-100"/></td>
           <td>{{ item.pathToPreviewImage }}</td>
         </tr>
       </tbody>
@@ -77,4 +75,7 @@ export default {
 </script>
 
 <style>
+.max-h-100 {
+  max-height: 100px;
+}
 </style>

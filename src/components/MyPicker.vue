@@ -1,16 +1,17 @@
 <template>
-  <div>
-    <p>
-      <input name="my-picker" v-model="localValue">
-    </p>
-    <p>
-      <datepicker
-        :value="dateFromString(localValue)"
-        :format="'dd.MM.yyyy'"
-        @selected="selectDate"
-        :language="ru"
-      ></datepicker>
-    </p>
+<div>
+  <datepicker
+    :value="new Date(value)"
+    :format="'dd.MM.yyyy'"
+    @selected="newValue=>$emit('input', newValue)"
+    :language="ru"
+    wrapper-class="d-flex justify-content-center"
+  >
+  <div slot="beforeCalendarHeader" class="calender-header">
+    Выберите дату
+  </div>
+  </datepicker>
+  
   </div>
 </template>
 
@@ -18,13 +19,13 @@
 import Datepicker from "vuejs-datepicker";
 import { ru } from "vuejs-datepicker/dist/locale";
 import moment from "moment";
+
 export default {
   components: { Datepicker },
 
   name: "my-picker",
   data: function() {
     return {
-      localValue: "",
       ru: ru
     };
   },
@@ -33,24 +34,6 @@ export default {
       type: String,
       required: true
     }
-  },
-  watch: {
-    localValue: function(newValue) {
-      this.$emit("input", newValue);
-    }
-  },
-  methods: {
-    dateFromString: function(strDate) {
-      let result= moment(strDate, "DD.MM.YYYY").toString();
-      debugger;
-      return result;
-    },
-    selectDate(newDate) {
-      this.localValue = moment(newDate).format("DD.MM.YYYY");
-    }
-  },
-  created: function() {
-    this.localValue = this.value;
   }
 };
 </script>
