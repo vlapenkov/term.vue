@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="newslist-container">
     <table class="table table-hover">
       <thead>
@@ -18,7 +18,7 @@
           </td>
           <td>{{ item.newsName }}</td>          
           <td>
-            <!--{{ item.active }}-->
+    
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" :checked="item.active">
               <label class="custom-control-label " ></label>
@@ -36,22 +36,48 @@
       </tfoot>
     </table>
   </div>
+</template> -->
+<template>
+  <div class="newslist-container">
+    <div class="table table-hover">
+      
+        <div class="row d-none d-md-flex head">
+          <div class="col-md-1">id</div>
+          <div class="col-md-2">Имя новости</div>         
+          <div class="col-md-2">Активность</div>
+          <div class="col-md-2">Дата публикации</div>
+          <div class="col-md-2">Картинка</div>
+          <div class="col-md-2">Путь к превью</div>
+        </div>
+      
+      
+        <div class="row" v-for="item in newsList" :key="item.id">
+          <div class="col-md-1">
+            <router-link :to="'/news/edit/' + item.id">{{ item.id }}</router-link>
+          </div>
+          <div class="col-md-2">{{ item.newsName }}</div>          
+          <div class="col-md-2">    
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" :checked="item.active">
+              <label class="custom-control-label " ></label>
+            </div>
+          </div>
+          <div class="col-md-2">{{  item.datePublish | formatDate }}</div>
+          <div class="col-md-2"><img :src="item.pathToFullImage" class="max-h-100"/></div>
+          <div class="col-md-2">{{ item.pathToPreviewImage }}</div>
+        </div>
+      
+      <tfoot>
+        <tr>
+          <th colspan="3">Всего новостей: {{ total }}</th>
+        </tr>
+      </tfoot>
+    </div>
+  </div>
 </template>
 
 <script>
-/*
-{
-id: 1,
-newsName: "sdfsdf2",
-newsText: "Тестовая новость",
-contentType: null,
-culture: "ru-RU",
-active: true,
-datePublish: "2018-12-19T15:21:02.1560081",
-pathToFullImage: "/images/news/cbcca6c3-221b-4a87-a6be-bd3fa59c0160.jpg",
-pathToPreviewImage: "/images/news/bfc01153-b2c5-492b-9bf9-bf34e9a4d752.jpg"
-},
-*/
+
 import moment from "moment";
 export default {
   name: "news-list",
@@ -78,4 +104,16 @@ export default {
 .max-h-100 {
   max-height: 100px;
 }
+
+.newslist-container
+{
+  font-size: .9em;
+}
+
+.head
+{
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
 </style>

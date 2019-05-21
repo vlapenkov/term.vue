@@ -18,15 +18,7 @@ const dictionary = {
     }
   }
 };
-/*
-Vue.use(VeeValidate, {
-  locale: "ru",
-  dictionary: {
-    ru: { messages: messagesRU, attributes: dictionary }
-  }
-});
-*/
-//Validator.localize(dictionary);
+
 
 Validator.localize("ru", messagesRU);
 Validator.localize(dictionary);

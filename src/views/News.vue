@@ -8,9 +8,6 @@
           <router-link to="/news/add" exact>
             <button type="button" class="btn btn-primary">Добавить</button>
           </router-link>
-
-          <!--<button type="button" class="btn btn-secondary">Middle</button>
-          <button type="button" class="btn btn-secondary">Right</button>-->
         </div>
       </div>
       <div class="ml-auto">
@@ -46,7 +43,7 @@ export default {
     newsList: [],
     title: "Список новостей с сервера",
     total: 0,
-    countPerPage: 5,
+    countPerPage: 10,
     activePage: 1,
     filter: {},
     //  searchText:'',
@@ -74,6 +71,7 @@ export default {
         .catch(error => console.error(error));
     },
 updateCount(count) {
+      this.activePage = 1;
       this.countPerPage = count;
       this.getNews();
     },
